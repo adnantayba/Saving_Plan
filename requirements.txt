@@ -1,0 +1,7 @@
+langchain_community
+langchain
+huggingface_hub
+langchain-huggingface
+python-dotenv
+flask
+pandas
