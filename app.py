@@ -1,17 +1,15 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, send_file
+
 from expensecalculator import ExpenseCalculator
-from utils import Utils
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Ensure you have the huggingface_hub_api_token set in your .env file
 huggingfacehub_api_token = os.getenv('HUGGINGFACEHUB_API_TOKEN')
-
 # Initialize ExpenseCalculator instance
-# model_name = 'meta-llama/Meta-Llama-3-8B-Instruct'
 model_name = os.getenv('MODEL_NAME')
 expense_calculator = ExpenseCalculator(model_name, huggingfacehub_api_token)
 
@@ -46,6 +44,7 @@ def calculate_expenses():
         return send_file(csv_output, mimetype='text/csv', download_name='adjusted_expenses.csv', as_attachment=True)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)

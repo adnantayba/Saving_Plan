@@ -106,7 +106,6 @@ class ExpenseCalculator:
         
         # Calculate the adjusted expenses based on the savings goal and excluded categories
         adjusted_expenses_str = self.calculate_expenses(expenses, savings_goal, excluded_categories)
-        
         # Convert the adjusted expenses string to a dictionary
         adjusted_expenses_dict = eval(adjusted_expenses_str)
         

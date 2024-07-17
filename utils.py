@@ -11,7 +11,7 @@ class Utils:
     @staticmethod
     def extract_expenses_string(s):
         """
-        Extracts the JSON-like expense string from a given input string.
+        Extracts the first JSON-like expense string from a given input string.
 
         Args:
             s (str): The input string containing the expense data.
@@ -19,13 +19,14 @@ class Utils:
         Returns:
             str: The extracted expense string in JSON format.
         """
-        # Find the start index of the expense JSON string
+        # Find the start index of the first '{'
         start_index = s.find('{')
-        # Find the end index of the expense JSON string
-        end_index = s.rfind('}') + 1
+        # Find the end index of the first '}'
+        end_index = s.find('}', start_index) + 1
         # Extract the expense string using the identified indices
         expenses_str = s[start_index:end_index]
         return expenses_str
+
 
     @staticmethod
     def parse_csv_to_expenses(csv_file):
